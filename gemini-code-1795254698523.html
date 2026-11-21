@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王正毅 Zheng-Yi Wang｜專題與競賽成果</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans TC & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    /* 隱藏分頁列捲軸但保留滑動功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- 頂部導覽列 -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center font-bold text-sm">
+          ZW
+        </div>
+        <div>
+          <h1 class="font-bold text-slate-900 leading-tight text-sm sm:text-base">王正毅 Zheng-Yi Wang</h1>
+          <p class="text-xs text-slate-500 hidden sm:block">專題研究與競賽成果展示</p>
+        </div>
+      </div>
+
+      <!-- 返回 Google Sites 主站按鈕 -->
+      <a href="https://www.zhengyiwang.com/"
+         class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium text-slate-700 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>返回主站</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 主視覺簡介 -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 text-white py-10 sm:py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <span class="inline-block px-3 py-1 rounded-full bg-teal-500/20 text-teal-200 text-xs font-medium mb-3 border border-teal-400/30">
+        Portfolio & Competitions
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">專題與競賽歷程</h2>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+        聚焦於水文與氣候變遷分析、空間資訊遙測、環境模擬與雙語地理教育。點擊下方分頁，瀏覽各項競賽與研究專案的詳細方法與成果。
+      </p>
+    </div>
+  </section>
+
+  <!-- 分頁切換導覽列 -->
+  <nav class="sticky top-16 z-20 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div id="tab-buttons" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-3">
+        <button data-tab="overview" class="tab-btn whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all">
+          總覽
+        </button>
+        <button data-tab="np2026" class="tab-btn whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all">
+          2026 國家公園研討會
+        </button>
+        <button data-tab="bilingual2026" class="tab-btn whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all">
+          2026 雙語教案競賽
+        </button>
+        <button data-tab="climate2026" class="tab-btn whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all">
+          2026 風與綠的空間保衛戰
+        </button>
+        <button data-tab="gis2026" class="tab-btn whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all">
+          2026 七家灣溪遙測小論文
+        </button>
+        <button data-tab="climate2025" class="tab-btn whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-all">
+          2025 熱感偵探
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+
+    <!-- 分頁 0：總覽 -->
+    <div id="panel-overview" class="tab-panel">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <!-- 卡片 1 -->
+        <div onclick="switchTab('np2026')" class="cursor-pointer group bg-white rounded-xl p-6 border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800">青年論文組 佳作</span>
+            <span class="text-xs text-slate-400">2026.08 - 09</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-teal-700 transition-colors mb-2">
+            臺灣國家公園保育研討會
+          </h3>
+          <p class="text-sm text-slate-600 line-clamp-2 mb-4">
+            運用高解析網格數據解析臺灣本島各國家公園之歷史氣候變遷趨勢，並於研討會進行口頭發表。
+          </p>
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+            查看詳細內容 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- 卡片 2 -->
+        <div onclick="switchTab('bilingual2026')" class="cursor-pointer group bg-white rounded-xl p-6 border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">雙語教案組 第二名</span>
+            <span class="text-xs text-slate-400">2026.06</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-teal-700 transition-colors mb-2">
+            師資生教學實務能力檢測
+          </h3>
+          <p class="text-sm text-slate-600 line-clamp-2 mb-4">
+            設計雙語地理教案《核心的繁榮，邊陲的代價？》，結合空間議題與雙語鷹架引導學生思辨全球化現象。
+          </p>
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+            查看詳細內容 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- 卡片 3 -->
+        <div onclick="switchTab('climate2026')" class="cursor-pointer group bg-white rounded-xl p-6 border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-sky-100 text-sky-800">全國決賽入圍</span>
+            <span class="text-xs text-slate-400">2026.05</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-teal-700 transition-colors mb-2">
+            教育部氣候變遷創意實作競賽｜風與綠的空間保衛戰
+          </h3>
+          <p class="text-sm text-slate-600 line-clamp-2 mb-4">
+            整合 OpenStreetMap、OpenFOAM 風場模擬與 Minecraft，打造互動式都市熱島與氣候調適空間模擬。
+          </p>
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+            查看詳細內容 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div onclick="switchTab('gis2026')" class="cursor-pointer group bg-white rounded-xl p-6 border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800">小論文競賽 優等</span>
+            <span class="text-xs text-slate-400">2026.04</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-teal-700 transition-colors mb-2">
+            臺師大地理學相關學程小論文競賽
+          </h3>
+          <p class="text-sm text-slate-600 line-clamp-2 mb-4">
+            《應用無人機熱紅外遙測技術解析高山河川水溫空間異質性：以七家灣溪為例》，探討地表水與地下水交互作用。
+          </p>
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+            查看詳細內容 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div onclick="switchTab('climate2025')" class="cursor-pointer group bg-white rounded-xl p-6 border border-slate-200 hover:border-teal-400 hover:shadow-md transition-all md:col-span-2">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-rose-100 text-rose-800">中央氣象署 氣候應用特別獎</span>
+            <span class="text-xs text-slate-400">2025</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-teal-700 transition-colors mb-2">
+            教育部氣候變遷創意實作競賽｜熱感偵探
+          </h3>
+          <p class="text-sm text-slate-600 mb-4">
+            結合氣象數據與微氣候觀測概念，獲頒交通部中央氣象署氣候應用特別獎，並受邀參與 2025 台灣氣候行動博覽會展出。
+          </p>
+          <span class="inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+            查看詳細內容 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 分頁 1：2026 國家公園保育研討會 -->
+    <div id="panel-np2026" class="tab-panel">
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">青年論文競賽 佳作</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">2026 年 8–9 月</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">氣候變遷分析</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">口頭發表</span>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">2026 臺灣國家公園保育研討會：歷史氣候數據趨勢分析</h2>
+        
+        <div class="space-y-6 text-slate-700 leading-relaxed">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="target" class="w-4 h-4 text-teal-600"></i> 研究背景與目標
+            </h3>
+            <p class="text-sm sm:text-base">
+              針對臺灣本島各國家公園進行長期歷史氣候數據的空間與時間趨勢分析，透過高解析度網格資料，量化不同海拔與地理分區在氣候變遷下的溫度與降水變化特徵，提供保育與經營管理的科學依據。
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="cpu" class="w-4 h-4 text-teal-600"></i> 使用方法與工具
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">Python (pandas / matplotlib)</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">Mann-Kendall 趨勢檢定</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">高解析氣候網格資料</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">GIS 空間分析</span>
+            </div>
+          </div>
+
+          <!-- 圖片或互動圖表預留區 -->
+          <div class="rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center">
+            <i data-lucide="image" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-medium text-slate-600">成果海報 / 研討會口頭發表照片 / 互動圖表預留區</p>
+            <p class="text-xs text-slate-400 mt-1">（之後可將 &lt;img src="你的圖片.jpg"&gt; 或 Plotly 圖表貼在此處）</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- 分頁 2：2026 雙語教案競賽 -->
+    <div id="panel-bilingual2026" class="tab-panel">
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">雙語教案組 第二名</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">2026 年 6 月</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">雙語地理教育</span>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">師資生教學實務能力檢測：《核心的繁榮，邊陲的代價？》</h2>
+        
+        <div class="space-y-6 text-slate-700 leading-relaxed">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="book-open" class="w-4 h-4 text-teal-600"></i> 教案設計理念
+            </h3>
+            <p class="text-sm sm:text-base">
+              以「核心－邊陲」空間結構與全球化不平等為主題，融入 CLIL（學科內容與語言整合學習）與語言鷹架策略，引導學生透過英語地圖判讀與情境討論，反思全球經濟分工背後的空間代價。
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-teal-600"></i> 教學亮點
+            </h3>
+            <ul class="list-disc list-inside text-sm sm:text-base space-y-1.5 text-slate-600">
+              <li>結合真實地理議題與多模態視覺教材，降低雙語學習門檻。</li>
+              <li>設計分層任務學習單，兼顧學科核心素養與課室英語互動。</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center">
+            <i data-lucide="file-text" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-medium text-slate-600">教案簡報預覽 / 學習單截圖 / 獎狀預留區</p>
+            <p class="text-xs text-slate-400 mt-1">（可嵌入 Google Slides 或放上教案封面圖）</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- 分頁 3：2026 氣候變遷創意實作競賽 -->
+    <div id="panel-climate2026" class="tab-panel">
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-800">全國決賽入圍</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">2026 年 5 月</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">都市熱島</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">Minecraft × CFD</span>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">教育部氣候變遷創意實作競賽：《風與綠的空間保衛戰》</h2>
+        
+        <div class="space-y-6 text-slate-700 leading-relaxed">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="wind" class="w-4 h-4 text-teal-600"></i> 專案簡介
+            </h3>
+            <p class="text-sm sm:text-base">
+              在李宗祐老師指導下與團隊共同開發，將真實都市空間資料匯入 Minecraft，並結合計算流體力學（CFD）風場模擬結果，讓使用者能在遊戲化環境中直觀體驗綠地配置、建築通風廊道對緩解都市熱島效應的影響。
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="layers" class="w-4 h-4 text-teal-600"></i> 技術架構
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">OpenStreetMap + Arnis</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">OpenFOAM 風場模擬</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">Python 資料轉換</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">Minecraft 互動場景</span>
+            </div>
+          </div>
+
+          <div class="rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center">
+            <i data-lucide="video" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-medium text-slate-600">Minecraft 模擬畫面 / 決賽簡報影片預留區</p>
+            <p class="text-xs text-slate-400 mt-1">（可嵌入 YouTube 展示影片或系統截圖）</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- 分頁 4：2026 地理學程小論文 -->
+    <div id="panel-gis2026" class="tab-panel">
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-800">小論文競賽 優等</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">2026 年 4 月</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">無人機熱紅外遙測</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">集水區水文</span>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">應用無人機熱紅外遙測技術解析高山河川水溫空間異質性：以七家灣溪為例</h2>
+        
+        <div class="space-y-6 text-slate-700 leading-relaxed">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="waves" class="w-4 h-4 text-teal-600"></i> 研究摘要
+            </h3>
+            <p class="text-sm sm:text-base">
+              七家灣溪為臺灣櫻花鉤吻鮭的重要棲地，河川水溫變化對生態極為敏感。本研究運用無人機熱紅外線遙測影像搭配多尺度熱示蹤方法，高解析度繪製河段水溫空間分布，辨識地下水湧出區與冷點（Cold-water patches），解析地表水與地下水交互作用機制。
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="compass" class="w-4 h-4 text-teal-600"></i> 關鍵技術
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">UAV 熱紅外影像</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">Pix4D 影像拼接</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">ArcGIS Pro / QGIS</span>
+              <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-medium">水溫空間分析</span>
+            </div>
+          </div>
+
+          <div class="rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center">
+            <i data-lucide="map" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-medium text-slate-600">七家灣溪熱紅外水溫分布圖預留區</p>
+            <p class="text-xs text-slate-400 mt-1">（可放上研究區域圖或互動式地圖）</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- 分頁 5：2025 熱感偵探 -->
+    <div id="panel-climate2025" class="tab-panel">
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800">中央氣象署 氣候應用特別獎</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">2025 年</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700">氣候行動博覽會參展</span>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">教育部氣候變遷創意實作競賽：《熱感偵探》</h2>
+        
+        <div class="space-y-6 text-slate-700 leading-relaxed">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <i data-lucide="sun" class="w-4 h-4 text-teal-600"></i> 專案簡介
+            </h3>
+            <p class="text-sm sm:text-base">
+              聚焦於極端高溫與都市微氣候風險，結合氣象開放資料與現地觀測概念，協助大眾辨識日常生活環境中的高溫熱點並提出調適建議。本作品榮獲交通部中央氣象署氣候應用特別獎，並於 2025 年前往高雄參與「台灣氣候行動博覽會」公開展示。
+            </p>
+          </div>
+
+          <div class="rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 p-8 text-center">
+            <i data-lucide="award" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-medium text-slate-600">氣候行動博覽會參展照片 / 頒獎合照預留區</p>
+            <p class="text-xs text-slate-400 mt-1">（可放上展覽現場照片或作品海報）</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="border-t border-slate-200 bg-white py-6 mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <p>© 2026 王正毅 Zheng-Yi Wang. Hosted on GitHub Pages.</p>
+      <div class="flex items-center gap-4">
+        <a href="https://www.zhengyiwang.com/" class="hover:text-teal-600 transition-colors">個人主站</a>
+        <a href="https://orcid.org/0009-0009-7877-4798" target="_blank" class="hover:text-teal-600 transition-colors">ORCID</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 分頁切換與網址錨點邏輯 -->
+  <script>
+    lucide.createIcons();
+
+    function switchTab(tabId, updateHash = true) {
+      // 隱藏所有分頁內容
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      // 重設所有按鈕樣式
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+      });
+
+      // 顯示目標分頁
+      const targetPanel = document.getElementById('panel-' + tabId);
+      const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+        targetBtn.classList.add('bg-teal-600', 'text-white', 'shadow-sm');
+        
+        // 手機版自動捲動讓選中的分頁按鈕保持在可視範圍
+        targetBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+        if (updateHash) {
+          history.replaceState(null, null, '#' + tabId);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // 綁定按鈕點擊事件
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchTab(btn.dataset.tab);
+      });
+    });
+
+    // 頁面載入時檢查網址是否有指定分頁（例如 index.html#climate2026）
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      const validTabs = ['overview', 'np2026', 'bilingual2026', 'climate2026', 'gis2026', 'climate2025'];
+      if (validTabs.includes(hash)) {
+        switchTab(hash, false);
+      } else {
+        switchTab('overview', false);
+      }
+    });
+  </script>
+</body>
+</html>
