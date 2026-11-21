@@ -54,21 +54,32 @@
       <main class="flex-1 px-6 sm:px-10 py-10 sm:py-12">
         <div class="max-w-4xl mx-auto">
 
-          <!-- Hero 標題與介紹卡片 -->
+          <!-- Hero 標題與介紹卡片（含個人照片） -->
           <section class="mb-10 bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-100 text-teal-700 text-xs font-semibold mb-4">
-              <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
-              Portfolio &amp; Competition Timeline
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-6 sm:gap-8 mb-6">
+              <!-- 左側文字區 -->
+              <div class="flex-1 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-100 text-teal-700 text-xs font-semibold mb-4">
+                  <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                  Portfolio &amp; Competition Timeline
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                  專題與競賽軌跡
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                  聚焦於水文與氣候變遷分析與雙語及地理教育。點擊時間軸上的節點，瀏覽各階段成果分頁。
+                </p>
+              </div>
+
+              <!-- 右側個人照片 -->
+              <div class="shrink-0">
+                <img src="profile.png" alt="王正毅 Zheng-Yi Wang"
+                     class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover object-top shadow-md ring-4 ring-white border border-slate-200/80" />
+              </div>
             </div>
-            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-              專題與競賽軌跡
-            </h1>
-            <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mb-6">
-              聚焦於水文與氣候變遷分析與雙語及地理教育。點擊時間軸上的節點，瀏覽各階段成果分頁。
-            </p>
 
             <!-- 互動式領域篩選按鈕 -->
-            <div class="flex flex-wrap items-center gap-2 pt-4 border-t border-slate-100">
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-4 border-t border-slate-100">
               <button onclick="setFilter('all')" data-filter="all"
                       class="filter-btn px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all">
                 全部成果 (5)
