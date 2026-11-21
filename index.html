@@ -11,13 +11,6 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
-    .orbit-node {
-      transform: translate(-50%, -50%);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .orbit-node.active {
-      transform: translate(-50%, -50%) scale(1.12);
-    }
   </style>
 </head>
 <body class="bg-white text-slate-700 overflow-x-clip">
@@ -45,181 +38,141 @@
       <main class="flex-1 px-6 sm:px-10 py-8">
         <div class="max-w-4xl mx-auto">
 
-          <div class="mb-10">
+          <div class="mb-12">
             <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">專題與競賽軌跡</h1>
             <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-              聚焦於水文與氣候變遷分析、空間資訊遙測、環境模擬與雙語地理教育。點擊圓形時間軸上的節點，瀏覽各階段成果分頁。
+              聚焦於水文與氣候變遷分析與雙語及地理教育。點擊圓形時間軸上的節點，瀏覽各階段成果分頁。
             </p>
           </div>
 
-          <!-- 電腦版：互動式圓形時間軸 -->
-          <div class="hidden md:flex justify-center items-center py-12 my-4">
-            <div class="relative w-[440px] h-[440px] rounded-full border-2 border-dashed border-teal-200 flex items-center justify-center">
-              
-              <!-- 裝飾內圈 -->
-              <div class="absolute inset-6 rounded-full border border-slate-100 pointer-events-none"></div>
+          <!-- 多彩交錯式時間軸 -->
+          <div class="relative py-4">
+            <!-- 中央漸層軸線（手機版靠左、電腦版置中） -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-amber-300 via-sky-300 to-rose-300 opacity-70"></div>
 
-              <!-- 圓心動態展示卡 -->
-              <div id="orbit-center" class="relative z-10 w-64 h-64 rounded-full bg-white shadow-lg border border-slate-100 p-6 flex flex-col items-center justify-center text-center transition-all duration-300">
-                <span id="center-date" class="text-xs font-semibold text-teal-600 tracking-wider mb-1.5"></span>
-                <span id="center-badge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full mb-2.5"></span>
-                <h2 id="center-title" class="text-base font-bold text-slate-900 leading-snug mb-4 line-clamp-3"></h2>
-                <a id="center-link" href="#" class="inline-flex items-center gap-1 px-4 py-1.5 rounded-full bg-teal-600 text-white text-xs font-medium hover:bg-teal-700 transition-colors shadow-sm">
-                  <span>進入分頁</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-
-              <!-- 5 個圓周節點容器（由 JS 動態定位） -->
-              <div id="orbit-nodes"></div>
-            </div>
+            <!-- 時間軸項目容器 -->
+            <div id="timeline-container" class="space-y-10 md:space-y-12"></div>
           </div>
-
-          <!-- 手機版：直式圓點時間軸 -->
-          <div id="mobile-timeline" class="md:hidden relative border-l-2 border-teal-200 ml-4 space-y-6 pb-4"></div>
 
         </div>
       </main>
     </div>
   </div>
 
-  <!-- 環形時間軸資料與互動腳本 -->
+  <!-- 時間軸資料與渲染腳本 -->
   <script>
     const milestones = [
       {
-        id: 'np2026',
-        date: '2026.08 - 09',
-        shortDate: '2026.09',
-        shortLabel: '國家公園研討會',
+        date: '2026.08 – 09',
         title: '臺灣國家公園保育研討會',
         badge: '青年論文組 佳作',
-        badgeClass: 'bg-amber-100 text-amber-800',
         icon: 'mountain',
         url: 'np2026.html',
-        // 圓周位置（頂部 0° 順時針排列）
-        top: '0%', left: '50%'
+        nodeBg: 'bg-amber-500 ring-amber-100',
+        badgeStyle: 'bg-amber-100 text-amber-800',
+        cardHover: 'hover:border-amber-400 hover:shadow-amber-100/70',
+        accentText: 'text-amber-600',
+        accentBar: 'bg-amber-500'
       },
       {
-        id: 'bilingual2026',
         date: '2026.06',
-        shortDate: '2026.06',
-        shortLabel: '雙語教案競賽',
         title: '師資生教學實務能力檢測',
         badge: '雙語教案組 第二名',
-        badgeClass: 'bg-emerald-100 text-emerald-800',
         icon: 'book-open',
         url: 'bilingual2026.html',
-        top: '34.5%', left: '97.5%'
+        nodeBg: 'bg-emerald-500 ring-emerald-100',
+        badgeStyle: 'bg-emerald-100 text-emerald-800',
+        cardHover: 'hover:border-emerald-400 hover:shadow-emerald-100/70',
+        accentText: 'text-emerald-600',
+        accentBar: 'bg-emerald-500'
       },
       {
-        id: 'climate2026',
         date: '2026.05',
-        shortDate: '2026.05',
-        shortLabel: '風與綠的保衛戰',
-        title: '教育部氣候變遷創意實作｜風與綠的空間保衛戰',
+        title: '教育部氣候變遷創意實作競賽｜風與綠的空間保衛戰',
         badge: '全國決賽入圍',
-        badgeClass: 'bg-sky-100 text-sky-800',
         icon: 'wind',
         url: 'climate2026.html',
-        top: '90.5%', left: '79.4%'
+        nodeBg: 'bg-sky-500 ring-sky-100',
+        badgeStyle: 'bg-sky-100 text-sky-800',
+        cardHover: 'hover:border-sky-400 hover:shadow-sky-100/70',
+        accentText: 'text-sky-600',
+        accentBar: 'bg-sky-500'
       },
       {
-        id: 'gis2026',
         date: '2026.04',
-        shortDate: '2026.04',
-        shortLabel: '七家灣溪小論文',
         title: '臺師大地理學相關學程小論文競賽',
         badge: '小論文競賽 優等',
-        badgeClass: 'bg-purple-100 text-purple-800',
         icon: 'waves',
         url: 'gis2026.html',
-        top: '90.5%', left: '20.6%'
+        nodeBg: 'bg-purple-500 ring-purple-100',
+        badgeStyle: 'bg-purple-100 text-purple-800',
+        cardHover: 'hover:border-purple-400 hover:shadow-purple-100/70',
+        accentText: 'text-purple-600',
+        accentBar: 'bg-purple-500'
       },
       {
-        id: 'climate2025',
         date: '2025',
-        shortDate: '2025',
-        shortLabel: '熱感偵探',
-        title: '教育部氣候變遷創意實作｜熱感偵探',
-        badge: '中央氣象署 特別獎',
-        badgeClass: 'bg-rose-100 text-rose-800',
+        title: '教育部氣候變遷創意實作競賽｜熱感偵探',
+        badge: '中央氣象署 氣候應用特別獎',
         icon: 'sun',
         url: 'climate2025.html',
-        top: '34.5%', left: '2.5%'
+        nodeBg: 'bg-rose-500 ring-rose-100',
+        badgeStyle: 'bg-rose-100 text-rose-800',
+        cardHover: 'hover:border-rose-400 hover:shadow-rose-100/70',
+        accentText: 'text-rose-600',
+        accentBar: 'bg-rose-500'
       }
     ];
 
-    function renderTimelines() {
-      const orbitContainer = document.getElementById('orbit-nodes');
-      const mobileContainer = document.getElementById('mobile-timeline');
+    function renderTimeline() {
+      const container = document.getElementById('timeline-container');
+      container.innerHTML = milestones.map((item, index) => {
+        const isLeft = index % 2 === 0;
+        return `
+          <div class="relative flex items-center md:justify-between group">
+            
+            <!-- 圓形圖示節點（手機靠左、電腦置中） -->
+            <a href="${item.url}" aria-label="${item.title}"
+               class="absolute left-6 md:left-1/2 -translate-x-1/2 z-10 w-12 h-12 rounded-full ${item.nodeBg} ring-8 text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-200">
+              <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+            </a>
 
-      // 產生電腦版圓周節點
-      orbitContainer.innerHTML = milestones.map((item, idx) => `
-        <button
-          onclick="selectMilestone(${idx})"
-          onmouseenter="selectMilestone(${idx})"
-          data-idx="${idx}"
-          style="top: ${item.top}; left: ${item.left};"
-          class="orbit-node absolute z-20 flex flex-col items-center group focus:outline-none">
-          <div class="node-circle w-14 h-14 rounded-full bg-white border-2 border-slate-200 shadow-md flex items-center justify-center text-slate-600 group-hover:border-teal-500 group-hover:text-teal-600 transition-colors">
-            <i data-lucide="${item.icon}" class="w-6 h-6"></i>
-          </div>
-          <div class="mt-2 px-2.5 py-1 rounded-full bg-white/95 border border-slate-200 shadow-xs text-center whitespace-nowrap">
-            <span class="block text-[10px] font-bold text-teal-600 leading-none mb-0.5">${item.shortDate}</span>
-            <span class="block text-xs font-medium text-slate-700 leading-tight">${item.shortLabel}</span>
-          </div>
-        </button>
-      `).join('');
-
-      // 產生手機版直式圓點時間軸
-      mobileContainer.innerHTML = milestones.map(item => `
-        <div class="relative pl-7">
-          <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-teal-600 border-4 border-white shadow-xs"></div>
-          <a href="${item.url}" class="block bg-white rounded-xl p-4 border border-slate-200 hover:border-teal-500 transition-all shadow-xs">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <span class="text-xs font-semibold px-2 py-0.5 rounded-full ${item.badgeClass}">${item.badge}</span>
-              <span class="text-xs text-slate-400">${item.date}</span>
+            <!-- 電腦版空白佔位（用來做出左右交錯效果） -->
+            <div class="hidden md:block md:w-[44%] ${isLeft ? 'order-2 text-left pl-4' : 'order-1 text-right pr-4'}">
+              <span class="inline-block text-sm font-bold ${item.accentText} tracking-wide">${item.date}</span>
             </div>
-            <h3 class="font-bold text-sm text-slate-900 mb-1">${item.title}</h3>
-            <span class="inline-flex items-center gap-1 text-xs font-medium text-teal-600">
-              進入分頁 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-            </span>
-          </a>
-        </div>
-      `).join('');
 
-      selectMilestone(0);
-    }
+            <!-- 內容卡片 -->
+            <div class="w-full pl-16 md:pl-0 md:w-[44%] ${isLeft ? 'md:order-1' : 'md:order-2'}">
+              <a href="${item.url}"
+                 class="block relative overflow-hidden bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm ${item.cardHover} hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
+                <!-- 頂部細色條 -->
+                <div class="absolute top-0 left-0 right-0 h-1 ${item.accentBar}"></div>
 
-    function selectMilestone(index) {
-      const item = milestones[index];
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <span class="text-xs font-semibold px-2.5 py-1 rounded-full ${item.badgeStyle}">${item.badge}</span>
+                  <span class="md:hidden text-xs font-bold ${item.accentText}">${item.date}</span>
+                </div>
 
-      // 更新圓心內容
-      document.getElementById('center-date').textContent = item.date;
-      const badgeEl = document.getElementById('center-badge');
-      badgeEl.textContent = item.badge;
-      badgeEl.className = `text-[11px] font-semibold px-2.5 py-0.5 rounded-full mb-2.5 ${item.badgeClass}`;
-      document.getElementById('center-title').textContent = item.title;
-      document.getElementById('center-link').href = item.url;
+                <h2 class="font-bold text-base sm:text-lg text-slate-900 leading-snug mb-3">
+                  ${item.title}
+                </h2>
 
-      // 更新選中節點樣式
-      document.querySelectorAll('.orbit-node').forEach((btn, idx) => {
-        const circle = btn.querySelector('.node-circle');
-        if (idx === index) {
-          btn.classList.add('active');
-          circle.classList.remove('bg-white', 'border-slate-200', 'text-slate-600');
-          circle.classList.add('bg-teal-600', 'border-teal-600', 'text-white', 'ring-4', 'ring-teal-100');
-        } else {
-          btn.classList.remove('active');
-          circle.classList.add('bg-white', 'border-slate-200', 'text-slate-600');
-          circle.classList.remove('bg-teal-600', 'border-teal-600', 'text-white', 'ring-4', 'ring-teal-100');
-        }
-      });
+                <div class="inline-flex items-center gap-1 text-xs font-semibold ${item.accentText}">
+                  <span>進入分頁</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        `;
+      }).join('');
 
       if (window.lucide) lucide.createIcons();
     }
 
-    document.addEventListener('DOMContentLoaded', renderTimelines);
+    document.addEventListener('DOMContentLoaded', renderTimeline);
   </script>
   <script src="menu.js"></script>
 </body>
